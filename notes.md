@@ -1,4 +1,4 @@
----------------------------- Lecture 1 ------------------------------------------------------------------------------------------------
+----------- Lecture 1 ------------------------------------------------------------------------------------------------
 
 # What is CDN?
 
@@ -8,11 +8,9 @@
 
 # Git & Gthub is different
 
-
-
 ---
 
--------------------------- Lecture 2-----------------------------------------------------------------------------------------------------
+-------------- Lecture 2-----------------------------------------------------------------------------------------------------
 
 # npm: It doesn't stand for node package manager
 
@@ -66,3 +64,33 @@
 - HTTPs
 - Tree shaking: It is a technique used to remove unused code from your final bundle. This can help reduce the size of your code and improve performance.
 - diff dev & prod bundles
+
+-------------------------- Lecture 3-----------------------------------------------------------------------------------------------------
+
+# To run the code in a project just check the package.json file for the scripts section. You can run the code by using the command `npm run <script-name>` in the terminal.
+
+# React.createElement create an object, it does not create a HTML element. The object is a representation of the HTML element that will be created when it is rendered.
+
+# JSX
+
+- JSX is not a part of React. JSX is seperate and React is seperate.
+- JSX is not html in javascript. It is html like syntax in javascript.
+
+# Who do you write code for? Machine or humans?
+
+- First humans, then machine. Write code for humans to read and understand, then make it work for the machine.
+- Because if we were wirting for machine we would write in binary.
+
+# Jsx in background is React.createElement. And who is doing this work? Babel is doing this work. Babel is a transpiler that converts JSX code into JavaScript code that can be understood by the browser.
+
+# If you have to give attributes to a JSX element, you have to wrtie it in camelCase. For example, instead of writing `class` you would write `className`.
+
+# If your jsx is multiline, you have to wrap it in parentheses. ()
+
+# Inside JSX, you can use JavaScript expressions by wrapping them in curly braces {}. For example, you can use a variable or a function call inside JSX by wrapping it in curly braces.
+
+# Ways of Calling functional components:
+
+- {title()}
+- <Title />
+- <Title></Title>
