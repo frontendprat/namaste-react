@@ -1,3 +1,241 @@
-#heading {
-  color: red;
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --swiggy-orange: #fc8019;
+  --swiggy-orange-dark: #e56f0d;
+  --swiggy-black: #282c3f;
+  --swiggy-gray: #686b78;
+  --swiggy-light-gray: #93959f;
+  --swiggy-border: #e9e9eb;
+  --swiggy-bg: #f4f5f7;
+  --swiggy-green: #48c479;
+  --swiggy-white: #ffffff;
+  --shadow-card: 0 3px 8px rgba(40, 44, 63, 0.08);
+  --shadow-card-hover: 0 8px 20px rgba(40, 44, 63, 0.16);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Plus Jakarta Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background-color: var(--swiggy-bg);
+  color: var(--swiggy-black);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  /* max-width: 1300px; */
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 80px;
+  background-color: var(--swiggy-white);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container img {
+  height: 52px;
+  width: 52px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.nav-items ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-items ul li {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--swiggy-black);
+  cursor: pointer;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-items ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--swiggy-orange);
+  transition: width 0.25s ease;
+}
+
+.nav-items ul li:hover {
+  color: var(--swiggy-orange);
+}
+
+.nav-items ul li:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Body / Search
+   ========================================================================== */
+
+.body {
+  padding: 32px 40px 60px;
+}
+
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 320px;
+  padding: 12px 18px;
+  margin-bottom: 28px;
+  background-color: var(--swiggy-white);
+  border: 1px solid var(--swiggy-border);
+  border-radius: 10px;
+  color: var(--swiggy-light-gray);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+}
+
+.search:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.search::before {
+  content: "🔍";
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Restaurant Grid
+   ========================================================================== */
+
+.res-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 28px;
+}
+
+.res-card {
+  background-color: var(--swiggy-white) !important;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  border: 1px solid var(--swiggy-border);
+}
+
+.res-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.res-logo {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background-color: var(--swiggy-border);
+}
+
+.res-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 14px 16px 4px;
+  color: var(--swiggy-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.res-card h4 {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0 16px 6px;
+  color: var(--swiggy-gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Rating line — turn the "X stars" heading into a little badge */
+.res-card h4:nth-of-type(2) {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--swiggy-green);
+  font-weight: 700;
+}
+
+.res-card h4:nth-of-type(2)::before {
+  content: "★";
+  font-size: 12px;
+}
+
+.res-card h4:last-of-type {
+  padding-bottom: 18px;
+  color: var(--swiggy-light-gray);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  .nav-items ul {
+    gap: 18px;
+  }
+
+  .nav-items ul li {
+    font-size: 13px;
+  }
+
+  .body {
+    padding: 20px 20px 40px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .res-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .res-logo {
+    height: 120px;
+  }
 }

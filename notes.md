@@ -94,3 +94,21 @@
 - {title()}
 - <Title />
 - <Title></Title>
+
+-------------------------- Lecture 4-----------------------------------------------------------------------------------------------------
+
+# props
+
+- props is the short form for properties.
+- just normal arguments to a function.
+
+# config driven UI
+
+- UI is driven by the config.
+- Config-driven UI is a pattern where the structure, content, and behavior of your UI is defined by data (a config object/JSON), rather than being hardcoded directly into your components.
+
+# .map()
+
+- whenever you are using .map() function, you need to give a unique key to each element in the list. This helps React identify which items have changed, are added, or are removed, and it improves the performance of your application. Or else React will throw a warning in the console. And will re render the entire list instead of just the changed items. This helps in optimizing the performance of your application.
+
+- It is not recommended to use index as a key because it can lead to unexpected behavior when the list changes. Instead, use a unique identifier for each item in the list, such as an ID or a unique property of the item.
