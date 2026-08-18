@@ -1,17 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+/* ==========================================================================
+   Yokocho Nights — a dark, neon-lit night-market food app
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --swiggy-orange: #fc8019;
-  --swiggy-orange-dark: #e56f0d;
-  --swiggy-black: #282c3f;
-  --swiggy-gray: #686b78;
-  --swiggy-light-gray: #93959f;
-  --swiggy-border: #e9e9eb;
-  --swiggy-bg: #f4f5f7;
-  --swiggy-green: #48c479;
-  --swiggy-white: #ffffff;
-  --shadow-card: 0 3px 8px rgba(40, 44, 63, 0.08);
-  --shadow-card-hover: 0 8px 20px rgba(40, 44, 63, 0.16);
+  --void: #0b0c14;
+  --panel: #15161f;
+  --panel-raised: #1c1d2a;
+  --neon-pink: #ff3b7f;
+  --neon-pink-dim: rgba(255, 59, 127, 0.35);
+  --lantern-amber: #ffb648;
+  --cyan-glow: #3ce9dc;
+  --text-hi: #f5f1e8;
+  --text-mid: #b5b3c2;
+  --text-low: #6f6d80;
+  --line: #26273a;
 }
 
 * {
@@ -21,23 +25,30 @@
 }
 
 body {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-  background-color: var(--swiggy-bg);
-  color: var(--swiggy-black);
+  background-color: var(--void);
+  background-image:
+    radial-gradient(
+      ellipse 900px 500px at 15% -10%,
+      rgba(255, 59, 127, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 700px 400px at 90% 10%,
+      rgba(60, 233, 220, 0.08),
+      transparent 60%
+    );
+  background-attachment: fixed;
+  color: var(--text-hi);
+  font-family: "Plus Jakarta Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .app {
-  /* max-width: 1300px; */
   margin: 0 auto;
 }
 
 /* ==========================================================================
-   Header
+   Header — neon stall signage
    ========================================================================== */
 
 .header {
@@ -45,50 +56,75 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  height: 80px;
-  background-color: var(--swiggy-white);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  height: 84px;
+  background-color: rgba(11, 12, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .logo-container img {
-  height: 52px;
-  width: 52px;
+  height: 80px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
+  /* border: 2px solid var(--neon-pink); */
+  /* box-shadow:
+    0 0 12px var(--neon-pink-dim),
+    0 0 28px rgba(255, 59, 127, 0.2);
+  animation: flicker 5s infinite; */
+}
+
+@keyframes flicker {
+  0%,
+  92%,
+  96%,
+  100% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.55;
+  }
+  95% {
+    opacity: 0.8;
+  }
 }
 
 .nav-items ul {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 36px;
 }
 
 .nav-items ul li {
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--swiggy-black);
+  font-family: "Bungee", cursive;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-mid);
   cursor: pointer;
   position: relative;
-  padding: 6px 0;
-  transition: color 0.2s ease;
+  padding: 6px 2px;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease;
 }
 
 .nav-items ul li::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -4px;
   width: 0;
   height: 2px;
-  background-color: var(--swiggy-orange);
-  transition: width 0.25s ease;
+  background: linear-gradient(90deg, var(--neon-pink), var(--cyan-glow));
+  transition: width 0.3s ease;
 }
 
 .nav-items ul li:hover {
-  color: var(--swiggy-orange);
+  color: var(--text-hi);
+  text-shadow: 0 0 10px var(--neon-pink-dim);
 }
 
 .nav-items ul li:hover::after {
@@ -100,61 +136,95 @@ body {
    ========================================================================== */
 
 .body {
-  padding: 32px 40px 60px;
+  padding: 40px 40px 70px;
+}
+
+.filter-block {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 35px;
 }
 
 .search {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  width: 320px;
-  padding: 12px 18px;
-  margin-bottom: 28px;
-  background-color: var(--swiggy-white);
-  border: 1px solid var(--swiggy-border);
-  border-radius: 10px;
-  color: var(--swiggy-light-gray);
+  width: 340px;
+  padding: 14px 20px;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-low);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .search:hover {
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 16px var(--neon-pink-dim);
+  color: var(--text-mid);
 }
 
 .search::before {
-  content: "🔍";
-  font-size: 14px;
+  content: "⌕";
+  font-size: 18px;
+  color: var(--neon-pink);
 }
 
 /* ==========================================================================
-   Restaurant Grid
+   Restaurant Grid — night-market stall stubs
    ========================================================================== */
 
 .res-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 28px;
+  gap: 30px;
 }
 
 .res-card {
-  background-color: var(--swiggy-white) !important;
-  border-radius: 16px;
+  background-color: var(--panel) !important;
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--shadow-card);
+  position: relative;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-  border: 1px solid var(--swiggy-border);
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .res-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--neon-pink);
+  box-shadow:
+    0 0 0 1px var(--neon-pink-dim),
+    0 14px 34px rgba(255, 59, 127, 0.18);
+}
+
+.res-card::before {
+  /* image vignette so the photo blends into the dark panel below it,
+     giving the stall photo a "night market" moodiness */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 12, 20, 0) 55%,
+    var(--panel) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .res-logo {
@@ -162,14 +232,17 @@ body {
   height: 160px;
   object-fit: cover;
   display: block;
-  background-color: var(--swiggy-border);
+  background-color: var(--panel-raised);
+  filter: saturate(1.15) contrast(1.05) brightness(0.92);
 }
 
 .res-card h3 {
-  font-size: 17px;
-  font-weight: 700;
-  padding: 14px 16px 4px;
-  color: var(--swiggy-black);
+  font-family: "Bungee", cursive;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  padding: 18px 16px 6px;
+  color: var(--text-hi);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -179,29 +252,87 @@ body {
   font-size: 13px;
   font-weight: 500;
   padding: 0 16px 6px;
-  color: var(--swiggy-gray);
+  color: var(--text-low);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Rating line — turn the "X stars" heading into a little badge */
+/* Rating line -> neon "power stat" badge */
 .res-card h4:nth-of-type(2) {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  color: var(--swiggy-green);
+  gap: 5px;
+  margin: 2px 16px 8px;
+  padding: 3px 10px;
+  width: fit-content;
+  background: rgba(60, 233, 220, 0.1);
+  border: 1px solid rgba(60, 233, 220, 0.35);
+  border-radius: 999px;
+  color: var(--cyan-glow);
   font-weight: 700;
+  font-size: 12px;
 }
 
 .res-card h4:nth-of-type(2)::before {
   content: "★";
+  font-size: 11px;
+}
+
+/* Price line -> torn ticket-stub tag, night-stall style */
+.res-card h4:nth-of-type(3) {
+  display: inline-block;
+  margin: 0 16px 10px;
+  padding: 3px 10px 3px 12px;
+  background-color: var(--lantern-amber);
+  color: var(--void);
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 4px;
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 6% 100%, 0 50%);
+}
+
+/* Delivery time -> quiet footer line */
+.res-card h4:last-of-type {
+  padding: 0 16px 18px;
+  color: var(--text-low);
   font-size: 12px;
 }
 
-.res-card h4:last-of-type {
-  padding-bottom: 18px;
-  color: var(--swiggy-light-gray);
+.res-card h4:last-of-type::before {
+  content: "⏱ ";
+}
+.filter-btn {
+  font-family: "Bungee", cursive;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  box-shadow: 0 0 14px var(--neon-pink-dim);
+}
+
+.filter-btn:active {
+  transform: scale(0.96);
+}
+
+/* Optional: an "active/selected" filter state, e.g. add this class via JS
+   when the filter is currently applied */
+.filter-btn.active {
+  background-color: var(--neon-pink);
+  border-color: var(--neon-pink);
+  color: var(--void);
+  box-shadow: 0 0 16px var(--neon-pink-dim);
 }
 
 /* ==========================================================================
@@ -211,7 +342,7 @@ body {
 @media (max-width: 768px) {
   .header {
     padding: 0 20px;
-    height: 64px;
+    height: 68px;
   }
 
   .nav-items ul {
@@ -219,11 +350,11 @@ body {
   }
 
   .nav-items ul li {
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .body {
-    padding: 20px 20px 40px;
+    padding: 24px 20px 50px;
   }
 
   .search {
@@ -232,10 +363,17 @@ body {
 
   .res-container {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
-  .res-logo {
+  .res-logo,
+  .res-card::before {
     height: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-container img {
+    animation: none;
   }
 }

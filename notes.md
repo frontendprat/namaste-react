@@ -112,3 +112,37 @@
 - whenever you are using .map() function, you need to give a unique key to each element in the list. This helps React identify which items have changed, are added, or are removed, and it improves the performance of your application. Or else React will throw a warning in the console. And will re render the entire list instead of just the changed items. This helps in optimizing the performance of your application.
 
 - It is not recommended to use index as a key because it can lead to unexpected behavior when the list changes. Instead, use a unique identifier for each item in the list, such as an ID or a unique property of the item.
+
+# Library/framework
+
+- It makes developer experience easy. Writes you less code.
+
+# src folder is not required. You can put your code anywhere in the project. But it is a convention to put your code in src folder.
+
+-------------------------- Lecture 5-----------------------------------------------------------------------------------------------------
+
+# Two type of imports/exports in React:
+
+- 1.  Named exports/imports: export { CDN_URL, LOGO_URL }/ import { CDN_URL, LOGO_URL } from "./constants";
+- 2.  Default exports/imports: export default RestaurantCard/import RestaurantCard from "./RestaurantCard";
+
+# React hooks
+
+- Normal Javascript functions.
+- useState() - superpowerful state variable.
+- useEffect()
+
+- Whenever a state variable updates, the component re-renders. This is how React updates the UI when the state changes.
+
+# Reconciliation Algorithm AKA React Fiber
+
+# Virtual DOM
+
+- Ultimately its an object.
+- It is a representation of the actual DOM.
+- Virtual DOM concept exists from a long time, it is not what React invented. React took it and made its algorithm over it.
+
+# Diff Algorithm
+
+- It calculates the difference between the previous virtual DOM and the new virtual DOM, and determines the minimum number of changes needed to update the actual DOM.
+- It will then actually update the DOM with every render cycle.
