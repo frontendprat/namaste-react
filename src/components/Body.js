@@ -1,124 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-// import listOfRestaurants from "../utils/mockData";
+import Shimmer from "./Shimmer";
 
-// State variables
-
-let listOfRestaurants;
 const Body = () => {
-  // Below is array destructuring
-  const [listOfRestaurants, setListofRestaurants] = useState([
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334475",
-        name: "KFC",
-        uuid: "eaed0e3b-7c0e-4367-8f59-f41d309fb93a",
-        city: "1",
-        area: "BTM Layout",
-        totalRatingsString: "500+ ratings",
-        cloudinaryImageId: "bdcd233971b7c81bf77e1fa4471280eb",
-        cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
-        tags: [],
-        costForTwo: 40000,
-        costForTwoString: "₹400 FOR TWO",
-        deliveryTime: 36,
-        minDeliveryTime: 36,
-        maxDeliveryTime: 36,
-        slaString: "36 MINS",
-        lastMileTravel: 3.5,
-        slugs: {
-          restaurant: "kfc-btm-layout-btm",
-          city: "bangalore",
-        },
-        cityState: "1",
-        address:
-          "KFC restaurants, 942,SV Tower, 16th Main, BTM 2nd Stage ,560076",
-        locality: "2nd Stage",
-        parentId: 547,
-        unserviceable: false,
-        veg: false,
-        select: false,
-        favorite: false,
-        tradeCampaignHeaders: [],
-        chain: [],
-        longDistanceEnabled: 0,
-        rainMode: "NONE",
-        thirdPartyAddress: false,
-        thirdPartyVendor: "",
-        adTrackingID:
-          "cid=6109309~p=1~eid=00000186-a341-249f-05e6-09c500910178",
-        lastMileTravelString: "3.5 kms",
-        hasSurge: false,
-        promoted: true,
-        avgRating: 3.8,
-        totalRatings: 500,
-        new: false,
-      },
-    },
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334479",
-        name: "Morroco Brocolli",
-        uuid: "eaed0e3b-7c0e-4367-8f59-f41d309fb93a",
-        city: "1",
-        area: "BTM Layout",
-        totalRatingsString: "500+ ratings",
-        cloudinaryImageId: "bdcd233971b7c81bf77e1fa4471280eb",
-        cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
-        tags: [],
-        costForTwo: 40000,
-        costForTwoString: "₹400 FOR TWO",
-        deliveryTime: 36,
-        minDeliveryTime: 36,
-        maxDeliveryTime: 36,
-        slaString: "36 MINS",
-        lastMileTravel: 3.5,
-        slugs: {
-          restaurant: "kfc-btm-layout-btm",
-          city: "bangalore",
-        },
-        cityState: "1",
-        address:
-          "KFC restaurants, 942,SV Tower, 16th Main, BTM 2nd Stage ,560076",
-        locality: "2nd Stage",
-        parentId: 547,
-        unserviceable: false,
-        veg: false,
-        select: false,
-        favorite: false,
-        tradeCampaignHeaders: [],
-        chain: [],
-        longDistanceEnabled: 0,
-        rainMode: "NONE",
-        thirdPartyAddress: false,
-        thirdPartyVendor: "",
-        adTrackingID:
-          "cid=6109309~p=1~eid=00000186-a341-249f-05e6-09c500910178",
-        lastMileTravelString: "3.5 kms",
-        hasSurge: false,
-        promoted: true,
-        avgRating: 3.9,
-        totalRatings: 500,
-        new: false,
-      },
-    },
-  ]);
-  return (
+  // State variables
+  // Array destructuring
+  const [listOfRestaurants, setListofRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+    );
+    const json = await data.json();
+
+    // Optional chaining
+    setListofRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+    setFilteredRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+  };
+
+  // Conditional rendering using ternary operator
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter-block">
-        <div className="search">Search</div>
+        <div className="search">
+          <input
+            placeholder="Search for restaurants/food"
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn btn"
+            onClick={() => {
+              const filteredRestaurants = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase()),
+              );
+              setFilteredRestaurants(filteredRestaurants);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <div className="filter-btn-container">
           <button
-            className="filter-btn"
+            className="filter-btn btn"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.data.avgRating > 3.8,
+                (res) => res.info.avgRating > 4.2,
               );
-              console.log(listOfRestaurants);
               setListofRestaurants(filteredList);
             }}
           >
@@ -128,8 +75,8 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+        {filteredRestaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>

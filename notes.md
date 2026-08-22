@@ -146,3 +146,15 @@
 
 - It calculates the difference between the previous virtual DOM and the new virtual DOM, and determines the minimum number of changes needed to update the actual DOM.
 - It will then actually update the DOM with every render cycle.
+
+-------------------------- Lecture 6-----------------------------------------------------------------------------------------------------
+
+# Monolith & Microservices Architecture
+
+# Shimmer UI
+
+- Fake impression that something is coming up.
+
+# In useState how does a const variable change its value?
+
+- So useState actually rerenders the whole component and the const variable is reinitialized with the new value. So it is not actually changing the value of the const variable, but rather creating a new instance of the variable with the updated value.
