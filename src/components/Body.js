@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   // State variables
@@ -15,18 +16,16 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-    );
+    const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
     const json = await data.json();
 
     // Optional chaining
     setListofRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     );
     setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     );
   };
@@ -63,10 +62,10 @@ const Body = () => {
           <button
             className="filter-btn btn"
             onClick={() => {
-              const filteredList = listOfRestaurants.filter(
+              const filteredList = filteredRestaurants.filter(
                 (res) => res.info.avgRating > 4.2,
               );
-              setListofRestaurants(filteredList);
+              setFilteredRestaurants(filteredList);
             }}
           >
             Top Rated Restraunts
@@ -76,7 +75,12 @@ const Body = () => {
 
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            to={"restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>

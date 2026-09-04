@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 const Header = () => {
   const logo = new URL("../../assets/fooder_logo_minimal.png", import.meta.url)
     .href;
 
   // using useState
   const [btnName, setBtnName] = useState("Login");
+
+  // using useEffect
+  useEffect(() => {
+    console.log("useEffect called");
+  }, []);
 
   return (
     <div className="header">
@@ -13,10 +20,18 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
+          </li>
           <button
             className="login-btn btn"
             onClick={() => {
