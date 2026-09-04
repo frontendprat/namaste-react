@@ -43,6 +43,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+a {
+  text-decoration: none;
+}
+
 .app {
   margin: 0 auto;
 }
@@ -98,21 +102,23 @@ body {
   align-items: center;
 }
 
-.nav-items ul li {
+.nav-items ul li a {
   font-family: "Bungee", cursive;
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-mid);
+  text-decoration: none;
   cursor: pointer;
   position: relative;
   padding: 6px 2px;
+  display: inline-block;
   transition:
     color 0.25s ease,
     text-shadow 0.25s ease;
 }
 
-.nav-items ul li::after {
+.nav-items ul li a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -123,13 +129,18 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-items ul li:hover {
+.nav-items ul li a:hover {
   color: var(--text-hi);
   text-shadow: 0 0 10px var(--neon-pink-dim);
 }
 
-.nav-items ul li:hover::after {
+.nav-items ul li a:hover::after {
   width: 100%;
+}
+
+/* Optional: highlight whichever nav link matches the current page */
+.nav-items ul li a.active {
+  color: var(--neon-pink);
 }
 
 /* ==========================================================================
@@ -492,6 +503,253 @@ body {
   }
 }
 
+/* ==========================================================================
+   Restaurant Menu Page
+   ========================================================================== */
+
+.restaurant-menu {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 70px;
+}
+
+.restaurant-menu > .res-logo {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: saturate(1.15) contrast(1.05) brightness(0.85);
+  margin-bottom: 24px;
+}
+
+.restaurant-menu > h1 {
+  font-family: "Bungee", cursive;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--text-hi);
+  margin-bottom: 10px;
+}
+
+.restaurant-menu > h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 16px;
+}
+
+.restaurant-menu > h3:nth-of-type(1) {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--void);
+  background-color: var(--lantern-amber);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-right: 10px;
+}
+
+.restaurant-menu > h3:nth-of-type(2) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyan-glow);
+  background: rgba(60, 233, 220, 0.1);
+  border: 1px solid rgba(60, 233, 220, 0.35);
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+.restaurant-menu > h3:nth-of-type(2)::before {
+  content: "★";
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   Menu list
+   ========================================================================== */
+
+.menu-items {
+  margin-top: 40px;
+}
+
+.menu-items > h2 {
+  font-family: "Bungee", cursive;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-hi);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-items ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.menu-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 20px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.menu-item-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--neon-pink);
+  box-shadow: 0 8px 20px rgba(255, 59, 127, 0.12);
+}
+
+.menu-item-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-hi);
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-item-card .res-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  order: 2;
+}
+
+.menu-item-card p {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--void);
+  background-color: var(--lantern-amber);
+  padding: 4px 12px 4px 14px;
+  border-radius: 4px;
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 6% 100%, 0 50%);
+  white-space: nowrap;
+  order: 3;
+}
+
+@media (max-width: 600px) {
+  .restaurant-menu > .res-logo {
+    height: 180px;
+  }
+
+  .menu-item-card {
+    flex-wrap: wrap;
+  }
+
+  .menu-item-card .res-logo {
+    width: 64px;
+    height: 64px;
+  }
+}
+/* ==========================================================================
+   About Page
+   ========================================================================== */
+
+.about-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 50px 20px 70px;
+}
+
+.about-page > h1 {
+  font-family: "Bungee", cursive;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--text-hi);
+  margin-bottom: 16px;
+}
+
+.about-page > h2:nth-of-type(1) {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 30px;
+}
+
+.about-page > h2:nth-of-type(2) {
+  font-family: "Bungee", cursive;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-hi);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   User Card (class component)
+   ========================================================================== */
+
+.user-card {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 8px 20px rgba(255, 59, 127, 0.12);
+}
+
+.user-card h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-low);
+}
+
+.user-card .user-name {
+  font-family: "Bungee", cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-hi);
+  margin-bottom: 4px;
+}
+
+.user-card .user-location,
+.user-card .user-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-card .user-location {
+  color: var(--cyan-glow);
+  background: rgba(60, 233, 220, 0.1);
+  border: 1px solid rgba(60, 233, 220, 0.35);
+}
+
+.user-card .user-github {
+  color: var(--lantern-amber);
+  background: rgba(255, 182, 72, 0.1);
+  border: 1px solid rgba(255, 182, 72, 0.35);
+}
 /* ==========================================================================
    Responsive
    ========================================================================== */

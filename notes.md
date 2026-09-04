@@ -158,3 +158,34 @@
 # In useState how does a const variable change its value?
 
 - So useState actually rerenders the whole component and the const variable is reinitialized with the new value. So it is not actually changing the value of the const variable, but rather creating a new instance of the variable with the updated value.
+
+-------------------------- Lecture 7-----------------------------------------------------------------------------------------------------
+
+# useEffect()
+
+- If no dependency array - then useEffect is called on every render.
+- If empty dependency array - then useEffect is called only on the initial render and just once
+- If dependency array has some variables - then useEffect is called on the initial render and whenever any of the variables in the dependency array change.
+
+# useState()
+
+- ALways define useState at the top and inside the component function. Because if you define it outside.
+- It's purpose is to create local state variables inside your functional component.
+- Also, don't define it under if/else conditions or loops.
+
+# React Router
+
+- {createBrowserRouter, RouterProvider, Outlet. Link}
+- Above one defines the router and one provides the router to the application, respectively.
+- Reactrouter provides useRouteError() hook to handle errors in the application. It allows you to access the error object and display an error message to the user.
+- Outlet component is used to render the matched child route component. It acts as a placeholder for the child routes and allows you to nest routes inside other routes.
+- Link component is used to create links between different routes in the application. It allows you to navigate to different pages without reloading the entire page.
+
+# 2 types of routing in web apps:
+
+1. Client side routing: The routing is handled on the client-side by the browser, without making requests to the server. This allows for a smoother user experience as the page doesn't need to be reloaded for each navigation.
+2. Server side routing: The routing is handled on the server-side, where the server determines which page to display based on the URL. This requires a full page reload for each navigation and network requests.
+
+# GraphQL
+
+- Helps with underfetching and overfetching of data.
