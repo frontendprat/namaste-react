@@ -189,3 +189,14 @@
 # GraphQL
 
 - Helps with underfetching and overfetching of data.
+
+---
+
+-------------------------- Lecture 8-----------------------------------------------------------------------------------------------------
+
+# Class based components
+
+- Lifecycle - constructor -> render -> componentDidMount (used to make an API call)
+- For child rendering lifecycle- the render phase and the commit phase are batched together. The render phase is where the component's render method is called and the virtual DOM is updated. The commit phase is where the changes are actually applied to the real DOM.
+
+## Never update state variables directly
