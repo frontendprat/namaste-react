@@ -8,6 +8,7 @@ class UserClass extends React.Component {
         location: "Default",
       },
     };
+    console.log(props.name + " constructor");
   }
 
   async componentDidMount() {
@@ -17,9 +18,11 @@ class UserClass extends React.Component {
     this.setState({
       userInfo: json,
     });
+    console.log(this.props.name + " componentDidMount");
   }
   render() {
     const { name, bio, html_url, avatar_url } = this.state.userInfo;
+    console.log(this.props.name + " render");
     return (
       <div className="user-card">
         <img className="user-logo" alt="user-logo" src={avatar_url} />

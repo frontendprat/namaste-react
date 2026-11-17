@@ -19,9 +19,14 @@ class About extends React.Component {
         <h2>This is my first React project, built from scratch.</h2>
         <h2>About me:</h2>
         <UserClass
-          name={"Pratik Vyas"}
+          name={"Child 1"}
           location={"Pune"}
           github={"https://github.com/frontendprat"}
+        />
+        <UserClass
+          name={"Child 2"}
+          location={"Ahmedabad"}
+          github={"https://github.com/vyas10"}
         />
       </div>
     );
