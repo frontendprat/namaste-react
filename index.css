@@ -695,60 +695,121 @@ a {
    User Card (class component)
    ========================================================================== */
 
-.user-card {
-  background-color: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 26px 28px;
+/* ==========================================================================
+   User Card (GitHub-style)
+   ========================================================================== */
+/* ==========================================================================
+   User Card — anime-style profile ID card
+   ========================================================================== */
+
+.about-page {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+}
+
+.user-card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: 10px auto 0;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 28px 32px;
   transition:
-    border-color 0.3s ease,
+    transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .user-card:hover {
-  border-color: var(--neon-pink);
-  box-shadow: 0 8px 20px rgba(255, 59, 127, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(255, 59, 127, 0.16);
 }
 
-.user-card h2 {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-low);
+/* gradient banner behind the avatar */
+.user-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 88px;
+  background: linear-gradient(
+    120deg,
+    var(--neon-pink) 0%,
+    var(--cyan-glow) 100%
+  );
+  opacity: 0.85;
+}
+
+.user-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 108px;
+  height: 108px;
+  margin: 38px auto 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--panel);
+  box-shadow:
+    0 0 0 2px var(--neon-pink),
+    0 0 18px var(--neon-pink-dim);
 }
 
 .user-card .user-name {
+  position: relative;
+  z-index: 1;
   font-family: "Bungee", cursive;
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 400;
   color: var(--text-hi);
-  margin-bottom: 4px;
+  margin-top: 16px;
 }
 
-.user-card .user-location,
+.user-card .user-bio {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-top: 10px;
+  padding: 0 4px;
+  margin-bottom: 20px;
+}
+
 .user-card .user-github {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 5px;
-  width: fit-content;
-  padding: 3px 10px;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 11px 16px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--void);
+  background-color: var(--lantern-amber);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.user-card .user-location {
-  color: var(--cyan-glow);
-  background: rgba(60, 233, 220, 0.1);
-  border: 1px solid rgba(60, 233, 220, 0.35);
+.user-card .user-github:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 16px rgba(255, 182, 72, 0.4);
 }
 
-.user-card .user-github {
-  color: var(--lantern-amber);
-  background: rgba(255, 182, 72, 0.1);
-  border: 1px solid rgba(255, 182, 72, 0.35);
+@media (max-width: 500px) {
+  .user-card {
+    max-width: 100%;
+  }
 }
 /* ==========================================================================
    Responsive

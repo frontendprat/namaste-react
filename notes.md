@@ -189,3 +189,73 @@
 # GraphQL
 
 - Helps with underfetching and overfetching of data.
+
+---
+
+-------------------------- Lecture 8-----------------------------------------------------------------------------------------------------
+
+## Class based components
+
+- Lifecycle - constructor -> render -> componentDidMount (used to make an API call)
+- For child rendering lifecycle- the render phase and the commit phase are batched together. The render phase is where the component's render method is called and the virtual DOM is updated. The commit phase is where the changes are actually applied to the real DOM
+
+# why write super(props) in constructor of class based component?
+
+- writing super(props) inside the constructor is used to initialize the parent class (React.Component) and pass the props up to it.
+  Without calling super(), Javascript will throw a reference error because you cannot use this inside a subclass constructor before calling the parent constructor.
+
+# state variables in class based components vs functional components
+
+# Defining
+
+- In class-based components, we define multiple state variables as:
+  this.state = {
+  variable1: value1,
+  variable2: value2,
+  };
+
+- In functional components, we define state variables using the `useState` hook:
+
+  const [variable1, setVariable1] = useState(value1);
+  const [variable2, setVariable2] = useState(value2);
+
+- which means that in class-based components, we have a single state object that can hold multiple variables, while in functional components, we have separate state variables for each piece of state.
+
+# Updating
+
+# Note: Never update state variables directly
+
+- In class-based components, we update state variables using the `this.setState()` method:
+
+  this.setState({ variable1: newValue1, variable2: newValue2 });
+
+- In functional components, we update state variables by calling the setter functions returned by the `useState` hook:
+
+  setVariable1(newValue1);
+  setVariable2(newValue2);
+
+# class based components lifecycle
+
+- Parent Constructor -> Parent Render -> Child Constructor -> Child Render -> Child componentDidMount -> Parent componentDidMount
+- componentDidMount is used to make API calls, because it is called after the component is mounted and rendered to the DOM. After that the API call is made and the data is fetched. Then the state variable is updated with the fetched data, which triggers a re-render of the component with the new data.
+- first render the component quickly and then make the API call and fetch the data.
+
+-- Now if there are multiple child components, then the lifecycle will be as follows:
+
+- Parent Constructor -> Parent Render -> Child1 Constructor -> Child1 Render -> Child2 Constructor -> Child2 Render -> Child3 Constructor -> Child3 Render -> Child1 componentDidMount -> Child2 componentDidMount -> Child3 componentDidMount -> Parent componentDidMount
+
+# Why is React fast?
+
+- It has 2 phases:
+
+1.  Render phase: contains constructor & render
+2.  Commit phase: updating the DOM and componentDidMount
+
+# Note: Never compare react life cycle method with functional component.
+
+## use effect:
+
+- if no dependency array - then useEffect is called on every render.
+- if empty dependency array - then useEffect is called only on the initial render and just once
+- if dependency array has some variables - then useEffect is called on the initial render and whenever
+  any of the variables in the dependency array change.
