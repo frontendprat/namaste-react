@@ -259,3 +259,39 @@
 - if empty dependency array - then useEffect is called only on the initial render and just once
 - if dependency array has some variables - then useEffect is called on the initial render and whenever
   any of the variables in the dependency array change.
+
+-------------------------- Lecture 9-----------------------------------------------------------------------------------------------------
+
+# Single Responsibility Principle
+
+- A component should have only one responsibility or reason to change. This means that a component should do one thing and do it well. If a component has multiple responsibilities, it can become difficult to maintain and test.
+- Modularity: Breaking down a complex application into smaller, reusable components that can be easily maintained and tested. This allows for better code organization and separation of concerns. It can be tested better as we can write unit tests for each component separately. It also allows for better code reuse, as components can be used in multiple places throughout the application.
+
+# Hooks
+
+- Are just utility functions
+- It is not mandatory but recommended to name the custom hooks with use prefix. For example, useFetch, useForm, useAuth, etc. This is a convention that helps to identify custom hooks and differentiate them from regular functions.
+
+# Bundlers - eg: parcel
+
+- Bundlers task is to bunlde all together meaning all the code and assets into a single files that can be served to the browser
+- it will generate 1 js file - can be found under dist folder. It will also generate a index.html file in dist folder which will have the script tag with the src pointing to the generated js file.
+- Now if it is a large project, combining everything into a single file can make the file size large and can slow down the loading time of the application. So what we can do as optimisation is make smaller bundles of these files with a concept known as chunking a.k.a code splitting, lazy loading, dynamic bundling, on demand loading etc.
+- So if we have a large project with multiple pages, we can create separate bundles for each page and load them only when the user navigates to that page. This can improve the loading time of the application and make it more performant.
+
+# lazy loading
+
+- Lazy loading is a technique where we load the components or modules only when they are needed, rather than loading them all at once. This can improve the performance of the application by reducing the initial load time and improving the user experience.
+- How to implement lazy loading in React:
+- React provides a built-in function called `React.lazy()` that allows us to define a component that will be loaded lazily. We can use this function to wrap our component and then use the `Suspense` component to handle the loading state while the component is being loaded.
+- Example:
+
+```javascript
+import React, { lazy, Suspense } from "react";
+const Grocery = lazy(() => import("./components/Grocery"));
+<Suspense fallback={<h1>Loading...</h1>}>
+  <Grocery />
+</Suspense>;
+```
+
+-------------------------- Lecture 10-----------------------------------------------------------------------------------------------------
