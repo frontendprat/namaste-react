@@ -295,3 +295,18 @@ const Grocery = lazy(() => import("./components/Grocery"));
 ```
 
 -------------------------- Lecture 10-----------------------------------------------------------------------------------------------------
+
+## Styling in React
+
+# Diff ways used by big companies to style their React components:
+
+1. Styled Components
+2. Tailwind CSS
+3. CSS-in-JS with TypeScrip
+4. Material-UI (MUI), Bootstrap, and other component libraries
+
+- We will be using taliwind CSS in this project.
+
+# Tailwind CSS
+
+- .postcssrc is kind of a way our project understands what is written inside tailwind.
